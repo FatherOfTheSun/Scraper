@@ -36,7 +36,6 @@ app.get("/scrape", function (req, res) {
   // First, we grab the body of the html with axios
   axios.get("http://www.echojs.com/").then(function (response) {
 
-    var articleNumber = 0;
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
 
@@ -50,7 +49,6 @@ app.get("/scrape", function (req, res) {
         .children("a")/////try deleting at end???????????????CHECK HERE//////
         .text();
       result.link = $(this)
-        .children("a")
         .attr("href");
       db.Article.findOne({ link: result.link })
 
@@ -59,7 +57,7 @@ app.get("/scrape", function (req, res) {
         .then(function (dbArticle) {
           // View the added result in the console
           console.log(dbArticle);
-          articleNumber++;
+
         })
         .catch(function (err) {
           // If an error occurred, log it
