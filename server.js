@@ -87,7 +87,7 @@ app.get("/articles", function (req, res) {
 });
 
 // Route for grabbing a specific Article by id, populate it with it's note
-app.get("/notes/:id", function (req, res) {
+app.get("/articles/:id", function (req, res) {
   db.Note.find({ article: req.params.id })
 
     .then(function (dbArticle) {
@@ -106,7 +106,7 @@ app.get("/notes/:id", function (req, res) {
 });
 
 // Route for saving/updating an Article's associated Note
-app.post("/notes/:id", function (req, res) {
+app.post("/articles/:id", function (req, res) {
   db.Note.create(req.body)
     .then(function (dbNote) {
       // If a Note was created successfully, find one User (there's only one) and push the new Note's _id to the User's `notes` array
@@ -129,25 +129,51 @@ app.post("/notes/:id", function (req, res) {
   // and update it's "note" property with the _id of the new note
 });
 
-
-// Delete an article
-app.get("/notes/delete/:id", function (req, res) {
-  // Remove a note using the objectID
-  db.notes.findOneAndDelete
-    ({ _id: req.params.id })
-    .then(function () {
-      console.log("DELETED");
-    }, function () {
-      console.log("FAIL");
+app.post("/note/save", function (req, res) {
+  db.Save.create(req.body)
+    .then(function (dbArticle) {
+      // If the User was save successfully, send it back to the client
+      res.json(dbArticle);
     })
     .catch(function (err) {
       res.json(err);
+      // If an error occurs, send it back to the client
     });
 
 });
 
+app.get("/note/save", function (req, res) {
+  db.Save.find({})
+    .then(function (dbArticle) {
+      // If GET note successfully, send it back to the client
+      res.json(dbArticle);
+    })
+    .catch(function (err) {
+      res.json(err)
+      // If an error occurs, send it back to the client
+    });
+});
 
-// Create a new note
+app.delete("/note/save/:id", function (req, res) {
+  console.log(req.params.id);
+  db.Save.findONeAndRemove({ _id: req.params.id })
+    .then(function (dbArticle) {
+      // If note was deleted successfully, send it back to the client
+      res.json(dbArticle);
+    })
+    .catch(function (err) {
+      res.json(err);
+      // If an error occurs, send it back to the client
+    });
+  res.end();
+});
+app.get("/save", function (req, res) {
+  // new note
+  res.sendFile(path.join(_dirname, "../public/saved.html"))
+});
+
+
+
 
 // Listen on PORT
 app.listen(PORT, function () {
