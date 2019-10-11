@@ -31,6 +31,23 @@ $("#scrape").on("click", function (event) {
   })
 })
 
+// saves article when someone click saveArticle
+$(document).on("click", "#savedArticle", function (event) {
+  event.preventDefault();
+  var title = $(this).attr('data-title');
+  var link = $(this).attr('data-link');
+
+  var data = {
+    title,
+    link
+  }
+  console.log(data);
+  $.post("/note/save", data)
+    .then((res) => {
+      console.log(res, "saved");
+    })
+})
+
 
 // Whenever someone clicks a p tag
 $(document).on("click", "p", function () {
