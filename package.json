@@ -14,18 +14,7 @@
     "axios": "^0.18.0",
     "cheerio": "^1.0.0-rc.2",
     "express": "^4.16.3",
-    "express-handlebars": "^3.1.0",
-    "heroku": "^7.33.1",
     "mongoose": "^5.3.16",
-    "morgan": "^1.9.1",
-    "request": "^2.88.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/FatherOfTheSun/Scraper.git"
-  },
-  "bugs": {
-    "url": "https://github.com/FatherOfTheSun/Scraper/issues"
-  },
-  "homepage": "https://github.com/FatherOfTheSun/Scraper#readme"
+    "morgan": "^1.9.1"
+  }
 }
