@@ -8,8 +8,9 @@ var Schema = mongoose.Schema;
 var SaveSchema = new Schema({
     title: {
         type: String,
+
         required: true,
-        ref: "Article"
+
     },
     link: {
         type: String,

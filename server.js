@@ -131,7 +131,7 @@ app.post("/articles/:id", function (req, res) {
   // and update it's "note" property with the _id of the new note
 });
 
-app.post("/note/save", function (req, res) {
+app.post("/api/save", function (req, res) {
   db.Save.create(req.body)
     .then(function (dbArticle) {
       // If the User was save successfully, send it back to the client
@@ -144,7 +144,7 @@ app.post("/note/save", function (req, res) {
 
 });
 
-app.get("/note/save", function (req, res) {
+app.get("/api/save", function (req, res) {
   db.Save.find({})
     .then(function (dbArticle) {
       // If GET note successfully, send it back to the client
@@ -156,7 +156,7 @@ app.get("/note/save", function (req, res) {
     });
 });
 
-app.delete("/note/save/:id", function (req, res) {
+app.delete("/api/save/:id", function (req, res) {
   console.log(req.params.id);
   db.Save.findONeAndRemove({ _id: req.params.id })
     .then(function (dbArticle) {
@@ -171,7 +171,7 @@ app.delete("/note/save/:id", function (req, res) {
 });
 app.get("/save", function (req, res) {
   // new note
-  res.sendFile(path.join(_dirname, "../public/saved.html"))
+  res.sendFile(path.join(_dirname, "/public/save.html"))
 });
 
 

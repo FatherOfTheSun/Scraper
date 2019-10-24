@@ -42,9 +42,9 @@ $(document).on("click", "#savedArticle", function (event) {
     link
   }
   console.log(data);
-  $.post("/note/save", data)
+  $.post("/api/save", data)
     .then((res) => {
-      console.log(res, "saved");
+      console.log(res, "save");
     })
 })
 

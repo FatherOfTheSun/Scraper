@@ -64,14 +64,21 @@
             margin: 20px;
         }
     </style>
+    <div class="navbar-nav">
+        <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" href="/save.html">Saved Articles</a>
+    </div>
 </head>
 
 <body>
     <div id="wrapper">
         <h1>Your Saved News</h1>
-        <div class="jumbotron text-center" id="articles"></div>
-        <div class="text-center" id="notes"></div>
+        <div class="jumbotron text-center" id="articles">
+            <div class="text-center" id="notes"></div>
+        </div>
+
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="Save.js"></script>
 </body>
 
